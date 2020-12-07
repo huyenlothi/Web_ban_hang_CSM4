@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -45,17 +44,6 @@ public class AppUser {
     }
 
     public void setRole(AppRole role) {
-        this.role = role;
-    }
-
-    public AppUser(Long id, @Min(6) String name, @Email String email, @Min(6) String password, String phone, String address, boolean status, AppRole role) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.address = address;
-        this.status = status;
         this.role = role;
     }
 
