@@ -4,24 +4,25 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
 @Entity
+@Table
 @Data
-@Table(name = "roles")
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppRole implements GrantedAuthority {
+public class Categorys {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;
 
-    @Override
-    public String getAuthority() {
-        return this.name;
-    }
+    private String image;
+
+    @Transient
+    private MultipartFile productImage;
+
 }
