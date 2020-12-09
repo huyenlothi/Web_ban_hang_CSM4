@@ -9,14 +9,9 @@ import java.util.Optional;
 
 @Service
 public class AppUserService implements IAppUserService{
-<<<<<<< HEAD
 
     @Autowired
     private AppUserRepository userRepository;
-=======
-@Autowired
-private AppUserRepository userRepository;
->>>>>>> 918d23e10ea2e8d843e968eef68d2e39609d2096
     @Override
     public AppUser getUserByName(String name) {
         return userRepository.findAppUserByName(name);
