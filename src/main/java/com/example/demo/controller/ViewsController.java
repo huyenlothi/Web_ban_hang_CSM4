@@ -10,4 +10,19 @@ public class ViewsController {
     public ModelAndView show() {
         return new ModelAndView("index");
     }
+
+    @GetMapping("/1")
+    public ModelAndView show1() {
+        return new ModelAndView("checkout");
+    }
+
+    @GetMapping("/2")
+    public ModelAndView show2() {
+        return new ModelAndView("details");
+    }
+
+    @GetMapping("/3")
+    public ModelAndView show3() {
+        return new ModelAndView("store");
+    }
 }

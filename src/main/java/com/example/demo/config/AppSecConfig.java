@@ -1,4 +1,3 @@
-/*
 package com.example.demo.config;
 
 import com.example.demo.service.appUser.IAppUserService;
@@ -25,13 +24,12 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/home/admin/**").hasRole("ADMIN")
+        http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
                 .and().authorizeRequests().antMatchers("/").permitAll()
-                .and().authorizeRequests().antMatchers("/home/user/**").hasRole("USER")
+                .and().authorizeRequests().antMatchers("/user/**").hasRole("USER")
                 .and().formLogin().loginPage("/login")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().exceptionHandling().accessDeniedPage("/accessDenied");
         http.csrf().disable();
     }
 }
-*/
