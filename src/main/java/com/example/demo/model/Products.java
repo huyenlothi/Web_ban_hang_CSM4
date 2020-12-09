@@ -55,4 +55,8 @@ public class Products {
     @JoinColumn(name="categorys_id")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name="trademark_id")
+    private TradeMark tradeMark;
+
 }
