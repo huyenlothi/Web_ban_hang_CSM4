@@ -14,9 +14,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TradeMark {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     private String name;
 
@@ -25,7 +27,5 @@ public class TradeMark {
 
     private String image;
 
-    @Transient
-    private MultipartFile productImage;
 
 }
