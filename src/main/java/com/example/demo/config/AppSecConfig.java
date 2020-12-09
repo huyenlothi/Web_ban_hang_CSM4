@@ -27,7 +27,7 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
                 .and().authorizeRequests().antMatchers("/").permitAll()
                 .and().authorizeRequests().antMatchers("/user/**").hasRole("USER")
-                .and().formLogin().loginPage("/login")
+                .and().formLogin()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().exceptionHandling().accessDeniedPage("/accessDenied");
         http.csrf().disable();
