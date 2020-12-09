@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -44,4 +43,20 @@ public class AppUser {
     @JoinColumn(name = "roll_id")
     private AppRole role;
 
+    public AppRole getRole() {
+        return role;
+    }
+
+    public void setRole(AppRole role) {
+        this.role = role;
+    }
+
+    public AppUser(@Min(6) String name, @Email String email, @Min(6) String password, String phone, String address, boolean status, AppRole role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone_number = phone;
+        this.address = address;
+        this.role = role;
+    }
 }
