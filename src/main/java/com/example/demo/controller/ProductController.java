@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.exeption.NotFoundException;
 import com.example.demo.model.Products;
 import com.example.demo.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class ProductController {
         return modelAndView;
     }
     @GetMapping("/edit/{id}")
-    public ModelAndView editproduct(@PathVariable Long id){
+    public ModelAndView editproduct(@PathVariable Long id) throws NotFoundException {
         ModelAndView modelAndView= new ModelAndView("product/edit");
         Products products = productService.findById(id).get();
         modelAndView.addObject("product",products);
@@ -49,7 +50,7 @@ public class ProductController {
         return modelAndView;
     }
     @GetMapping("/delete/{id}")
-    public ModelAndView delete(@PathVariable Long id){
+    public ModelAndView delete(@PathVariable Long id) throws NotFoundException {
         ModelAndView modelAndView = new ModelAndView("product/delete");
         modelAndView.addObject("product",productService.findById(id));
         return modelAndView;

@@ -26,7 +26,4 @@ public class Category {
 
     private String image;
 
-    @Transient
-    private MultipartFile productImage;
-
 }
