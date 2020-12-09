@@ -5,10 +5,7 @@ import com.example.demo.repository.AppRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 import java.util.Optional;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 @Service
 public class AppRoleService implements IAppRoleService {
