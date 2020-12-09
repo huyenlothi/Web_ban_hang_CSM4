@@ -3,11 +3,15 @@ package com.example.demo.service.appUser;
 import com.example.demo.model.AppUser;
 import com.example.demo.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,6 +46,14 @@ public class AppUserService implements IAppUserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        AppUser  user= this.getUserByName(username);
+        List<GrantedAuthority> authorities= new ArrayList<>();
+        authorities.add(user.getRole());
+        UserDetails userDetails= new User(
+                user.getName(),
+                user.getPassword(),
+                authorities
+        );
+        return userDetails;
     }
 }

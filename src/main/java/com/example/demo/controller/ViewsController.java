@@ -18,11 +18,11 @@ public class ViewsController {
 
     @GetMapping("/2")
     public ModelAndView show2() {
-        return new ModelAndView("details");
+        return new ModelAndView("admin-list");
     }
 
     @GetMapping("/3")
     public ModelAndView show3() {
-        return new ModelAndView("store");
+        return new ModelAndView("create");
     }
 }
