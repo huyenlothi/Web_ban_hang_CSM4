@@ -1,3 +1,4 @@
+/*
 package com.example.demo.config;
 
 import com.example.demo.service.appUser.IAppUserService;
@@ -33,3 +34,4 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 }
+*/
