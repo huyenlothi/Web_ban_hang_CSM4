@@ -1,27 +1,29 @@
 package com.example.demo.model;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppRole implements GrantedAuthority {
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    private String name;
 
-    @Override
-    public String getAuthority() {
-        return this.name;
-    }
+    private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Products products;
+
+    @ManyToOne
+    @JoinColumn(name="cart_id")
+    private Cart cart;
+
 }
