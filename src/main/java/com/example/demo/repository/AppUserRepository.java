@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AppUserRepository extends CrudRepository<AppUser,Long> {
-    AppUser findAppUserByName(String name);
+    AppUser findAppUserByUsername(String name);
 }

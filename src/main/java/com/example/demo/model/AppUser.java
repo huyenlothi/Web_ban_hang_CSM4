@@ -21,7 +21,7 @@ public class AppUser {
     @NotNull
     @Column(unique = true)
     @Min(6)
-    private String name;
+    private String username;
     @Min(6)
     private String password;
 
@@ -52,7 +52,7 @@ public class AppUser {
     }
 
     public AppUser(@Min(6) String name, @Email String email, @Min(6) String password, String phone, String address, boolean status, AppRole role) {
-        this.name = name;
+        this.username = name;
         this.email = email;
         this.password = password;
         this.phone_number = phone;
