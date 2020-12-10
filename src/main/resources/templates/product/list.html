@@ -51,29 +51,8 @@
                                                     <div class="row">
                                                         <form>
                                                             <div style="width: 1000px;">
-                                                                <div style="margin-right: 30px;width: 150px;float: left;">
-                                                                    <select class="form-control select2" name="group" id="group">
-                                                                        <option>Group</option>
-                                                                        <option value="">
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                                <div style="margin-right: 30px; width: 100px; float: left;">
-                                                                    <select class="form-control select2" name="active" id="active">
-                                                                        <option>Status</option>
-                                                                        <option value="1">Active</option>
-                                                                        <option value="0">Un Active</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div style="float: left;">
+                                                                <div style="float: left; margin-left: 300px">
                                                                     <input type="text" name="name" id="name" class="form-control" value="" placeholder="Nhập từ khóa...">
-                                                                </div>
-                                                                <div style="margin-right: 30px;width: 100px;float: left;">
-                                                                    <select class="form-control select2" name="sby" id="sby">
-                                                                        <option>Search By</option>
-                                                                        <option value="id">User_Id</option>
-                                                                        <option value="name">Username</option>
-                                                                    </select>
                                                                 </div>
                                                                 <div style="padding: 0; margin: 0;float: left;">
                                                                     <button id="button1"  class="btn btn-warning" type="submit" style="padding: 6px 35px;"><i class="fa fa-search"></i></button>
@@ -96,33 +75,38 @@
                                             <table class="table table-bordered table-hover">
                                                 <thead>
                                                 <tr>
-                                                    <th style="text-align: center">User_Id</th>
-                                                    <th style="text-align: center">First Name</th>
-                                                    <th style="text-align: center">Last Name</th>
-                                                    <th style="text-align: center">Tỉnh thành</th>
-                                                    <th style="text-align: center">Image</th>
+                                                    <th style="text-align: center">Số thứ tự</th>
+                                                    <th style="text-align: center">Tên rượu</th>
+                                                    <th style="text-align: center">Ảnh mô tả</th>
+                                                    <th style="text-align: center">Loại rượu</th>
+                                                    <th style="text-align: center">Thương hiệu</th>
+                                                    <th style="text-align: center">Giá tiền</th>
+                                                    <th style="text-align: center">Số lượng</th>
+                                                    <th style="text-align: center">Ngày thêm</th>
                                                     <th style="text-align: center">Thao tác</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                <th:block th:each="product,rowStat : ${products}">
                                                     <tr>
-                                                        <th style="text-align: center;"></th>
-                                                        <td style="text-align: center"></td>
-                                                        <td style="text-align: center" ></td>
-                                                        <td style="text-align: center" ></td>
-                                                        <td style="text-align: center"><img  style="width: 45px; height: 37px"></td>
+                                                        <th style="text-align: center;" th:text="${rowStat.index + 1 }"></th>
+                                                        <td style="text-align: center" th:text="${product.name}"></td>
+                                                        <td style="text-align: center"><img th:src="@{'/views/img/'+ ${product.image1}}"  style="width: 45px; height: 37px"></td>
+                                                        <td style="text-align: center" th:text="${product.category.name}"></td>
+                                                        <td style="text-align: center" th:text="${product.tradeMark.name}"></td>
+                                                        <td style="text-align: center" th:text="${product.price}"></td>
+                                                        <td style="text-align: center" th:text="${product.quantity}"></td>
+                                                        <td style="text-align: center" th:text="${product.date}"></td>
                                                         <td style="text-align: center">
-                                                            <a href="" target="_blank" class="btn">
-                                                                <i class="glyphicon glyphicon-zoom-in"></i> Xem
-                                                            </a>
-                                                            <a th:href="" class="btn">
+                                                            <a class="btn" th:href="@{/product/update/__${product.id}__}">
                                                                 <i class="glyphicon glyphicon-edit"></i> Sửa
                                                             </a>
-                                                            <a  th:href="" onclick="return confirm('Are you sure?')">
+                                                            <a onclick="return confirm('Are you sure?')" th:href="@{/product/delete/__${product.id}__}">
                                                                 <i class="glyphicon glyphicon-trash"></i> Xóa
                                                             </a>
                                                         </td>
                                                     </tr>
+                                                </th:block>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -132,13 +116,13 @@
                                     <nav aria-label="Page navigation">
                                         <ul class="pagination">
                                             <!--<li class="page-item">
-                                                <a class="page-link" th:href="@{'/customers'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
+                                                <a class="page-link" th:href="@{'/category'(page=${category.number - 1})}" th:if="${category.hasPrevious()}">Previous</a>
                                             </li>
                                             <li class="page-item">
-                                                <span class="page-link" th:text="${customers.number + 1}"></span><span class="page-link" th:text="${customers.totalPages}"></span>
+                                                <span class="page-link" th:text="${category.number + 1}"></span><span class="page-link" th:text="${category.totalPages}"></span>
                                             </li>
                                             <li class="page-item">
-                                                <a class="page-link" th:href="@{'/customers'(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
+                                                <a class="page-link" th:href="@{'/category'(page=${category.number + 1})}" th:if="${category.hasNext()}">Next</a>
                                             </li>-->
                                         </ul>
                                     </nav>

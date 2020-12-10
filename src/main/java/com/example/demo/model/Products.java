@@ -24,11 +24,11 @@ public class Products {
     private Long id;
     @NotNull
     private String name;
-    @Size(min = 0)
+    @Min(0)
     private Double price;
 
-    @Size(min = 0)
-    private int quantity;
+    @Min(0)
+    private Long quantity;
 
     private String image1;
     @Transient

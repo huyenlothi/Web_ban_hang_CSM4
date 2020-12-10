@@ -1,5 +1,6 @@
 package com.example.demo.service.product;
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Products;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class ProductService implements IProductService{
     @Override
     public Iterable<Products> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Page<Products> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @Override

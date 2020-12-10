@@ -7,4 +7,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface IProductService extends IService<Products> {
     Page<Products> findAllByNameContaining(String name, Pageable pageable);
+    public Page<Products> findAll(Pageable pageable);
 }

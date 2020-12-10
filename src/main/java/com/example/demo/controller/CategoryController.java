@@ -85,7 +85,7 @@ public class CategoryController {
     @PostMapping("/update")
     public ModelAndView postUpdate(@ModelAttribute Category category) throws NotFoundException {
         Category category1 = categoryService.findById(category.getId()).get();
-        category.setName(category.getName());
+        category1.setName(category.getName());
         MultipartFile file = category.getImg();
         String image;
         if (file.isEmpty()){
