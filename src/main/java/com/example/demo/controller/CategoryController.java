@@ -112,7 +112,7 @@ public class CategoryController {
         Category category = categoryService.findById(id).get();
         categoryService.delete(category.getId());
         Page<Category> categories = categoryService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("/category/list");
+        ModelAndView modelAndView = new ModelAndView("category/list");
         modelAndView.addObject("category", categories);
         return modelAndView;
     }
