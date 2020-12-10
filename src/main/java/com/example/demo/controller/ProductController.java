@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/product")
 public class ProductController {
     @Autowired
     IProductService productService;
