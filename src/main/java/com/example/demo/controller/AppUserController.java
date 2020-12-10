@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.AppRole;
 import com.example.demo.model.AppUser;
 import com.example.demo.service.appUser.IAppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,16 @@ public class AppUserController {
     }
     @PostMapping("/create")
     public ModelAndView createAppUser(@ModelAttribute AppUser user){
-        ModelAndView modelAndView= new ModelAndView("login");
+        ModelAndView modelAndView= new ModelAndView("user/create");
+        AppRole appRole= new AppRole();
+        appRole.setId((long) 2);
+        appRole.setName("ROLE_USER");
+        user.setRole(appRole);
         appUserService.save(user);
-        modelAndView.addObject("appUser", user);
+        modelAndView.addObject("user", new AppUser());
         return modelAndView;
     }
+   }
 
 
-}
+

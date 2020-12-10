@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
@@ -20,12 +22,12 @@ public class AppUser {
 
     @NotNull
     @Column(unique = true)
-    @Min(6)
+    @Size(min = 1)
     private String username;
-    @Min(6)
+    @Size(min = 6)
     private String password;
 
-    @Min(8)
+
     private String full_name;
 
     @NotNull
@@ -33,6 +35,7 @@ public class AppUser {
     private String email;
 
     @NotNull
+    @Size(min = 3,max = 10)
     private String phone_number;
 
     @NotNull
