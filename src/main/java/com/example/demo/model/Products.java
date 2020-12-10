@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 
@@ -23,10 +24,10 @@ public class Products {
     private Long id;
     @NotNull
     private String name;
-    @Min(0)
+    @Size(min = 0)
     private Double price;
 
-    @Min(0)
+    @Size(min = 0)
     private int quantity;
 
     private String image1;
