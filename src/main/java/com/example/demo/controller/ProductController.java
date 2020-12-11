@@ -48,15 +48,42 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public ModelAndView getList(@RequestParam("name") Optional<String> name, @PageableDefault(size = 10) Pageable pageable) {
+    public ModelAndView getList(@RequestParam(value = "name",required = false,defaultValue = "") String name,@RequestParam(value = "category",required = false, defaultValue = "") String category,@RequestParam(value = "tradeMark",required = false,defaultValue = "") String tradeMark, @PageableDefault(size = 10) Pageable pageable) throws NotFoundException {
         Page<Products> products;
-        if(name.isPresent()){
-            products = productService.findAllByNameContaining(name.get(), pageable);
-        } else {
+        Long cat_id = null;
+        Long trade_id = null;
+        Category category1 = new Category();
+        TradeMark tradeMark1 = new TradeMark();
+        if (!category.equals("")) {
+            cat_id = Long.parseLong(category);
+            category1 = categoryService.findById(cat_id).get();
+        }
+        if(!tradeMark.equals("")) {
+            trade_id = Long.parseLong(tradeMark);
+            tradeMark1 = trademarkService.findById(trade_id).get();
+        }
+
+        if(!name.equals("") && category.equals("") && tradeMark.equals("")){
+            products = productService.findAllByNameContaining(name, pageable);
+        }else if(name.equals("") && !category.equals("") && tradeMark.equals("")){
+            products = productService.findAllByCategory(category1, pageable);
+        }else if(name.equals("") && category.equals("") && !tradeMark.equals("")){
+            products = productService.findAllByTradeMark(tradeMark1, pageable);
+        }else if(!name.equals("") && !category.equals("") && tradeMark.equals("")){
+            products = productService.findAllByNameContainingAndCategory(name,category1, pageable);
+        }else if(!name.equals("") && category.equals("") && !tradeMark.equals("")){
+            products = productService.findAllByNameContainingAndTradeMark(name,tradeMark1, pageable);
+        }else if(name.equals("") && !category.equals("") && !tradeMark.equals("")){
+            products = productService.findAllByCategoryAndTradeMark(category1,tradeMark1, pageable);
+        }else if(!name.equals("") && !category.equals("") && !tradeMark.equals("")){
+            products = productService.findAllByNameContainingAndTradeMarkAndCategory(name,category1,tradeMark1, pageable);
+        }else {
             products = productService.findAll(pageable);
         }
         ModelAndView modelAndView = new ModelAndView("product/list");
         modelAndView.addObject("products", products);
+        modelAndView.addObject("cat_id", cat_id);
+        modelAndView.addObject("trade_id", trade_id);
         return modelAndView;
     }
 

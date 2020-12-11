@@ -49,9 +49,21 @@
                                                 <div class="col-sm-8">
                                                     <!-- tìm kiếm -->
                                                     <div class="row">
-                                                        <form>
+                                                        <form method="GET">
                                                             <div style="width: 1000px;">
-                                                                <div style="float: left; margin-left: 300px">
+                                                                <div style="margin-right: 30px;width: 150px;float: left;">
+                                                                    <select class="form-control select2" name="tradeMark" id="tradeMark">
+                                                                        <option value="">Thương Hiệu</option>
+                                                                        <option th:each="t : ${trademark}" th:value="${t.id}" th:text="${t.name}" style="width: 417px" onchange="this.form.submit()" ></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div style="margin-right: 30px; width: 100px; float: left;">
+                                                                    <select class="form-control select2"  name="category" id="category">
+                                                                        <option value="">Loại rượu</option>
+                                                                        <option th:each="c : ${category}" th:value="${c.id}" th:text="${c.name}" style="width: 417px"></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div style="float: left;">
                                                                     <input type="text" name="name" id="name" class="form-control" value="" placeholder="Nhập từ khóa...">
                                                                 </div>
                                                                 <div style="padding: 0; margin: 0;float: left;">
@@ -94,7 +106,7 @@
                                                         <td style="text-align: center"><img th:src="@{'/views/img/'+ ${product.image1}}"  style="width: 45px; height: 37px"></td>
                                                         <td style="text-align: center" th:text="${product.category.name}"></td>
                                                         <td style="text-align: center" th:text="${product.tradeMark.name}"></td>
-                                                        <td style="text-align: center" th:text="${product.price}"></td>
+                                                        <td style="text-align: center" th:text="${#numbers.formatCurrency(product.price)}" ></td>
                                                         <td style="text-align: center" th:text="${product.quantity}"></td>
                                                         <td style="text-align: center" th:text="${product.date}"></td>
                                                         <td style="text-align: center">
