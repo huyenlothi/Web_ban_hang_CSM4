@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Va-Va-Voom</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/nouislider.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <style type="text/css">
+        #brand-1
+        {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            position: relative;
+            background-color: #d1d3d1;
+            color: #666;
+            height: 25px;
+            width: 24px;
+            border: 0;
+            top: 7px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-right: 8px;
+            outline: none;
+        }
+        #brand-1:checked::before
+        {
+            position: absolute;
+            font: 13px/1 'Open Sans', sans-serif;
+            left: 7px;
+            top: 7px;
+            content: '\02143';
+            transform: rotate(40deg);
+            font-size: 15px;
+            color: black;
+            font-weight: bold;
+            padding-right: 5px;
+        }
+        #brand-1:hover
+        {
+            background-color: #f1f1f1;
+        }
+        #brand-1:checked
+        {
+            background-color: #d1d3d1;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 1040px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 10px 16px;
+            z-index: 1;
+        }
+        .dropdown-content > li > a {
+            padding: 3px 0px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="master::view-top-cart-menu"></th:block>
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="/index">Trang chủ</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-5 col-md-push-2">
+                <div id="product-main-img">
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image1}}" height="390px">
+                    </div>
+
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image2}}" height="400px">
+                    </div>
+
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image3}}" height="400px">
+                    </div>
+
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image4}}" height="400px">
+                    </div>
+                </div>
+            </div>
+            <!-- /Product main img -->
+            <!-- Product thumb imgs -->
+            <div class="col-md-2  col-md-pull-5">
+                <div id="product-imgs">
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image1}}" height="133px">
+                    </div>
+
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image2}}" height="133px">
+                    </div>
+
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image3}}" height="133px">
+                    </div>
+
+                    <div class="product-preview">
+                        <img th:src="@{'/views/img/'+ ${product.image4}}" height="133px">
+                    </div>
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-11">
+                        <div class="product-details">
+                            <h2 class="product-name" th:text="${product.name}"></h2>
+                            <div>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="product-price" th:text="${product.price}"> VNĐ</h4>
+                            </div>
+                            <p></p>
+                            <div class="add-to-cart">
+                                <a href=""><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Thêm vào túi</button></a>
+                            </div>
+                            <ul class="product-links">
+                                <li style="font-weight: bold">Số lượng trong kho:</li>
+                                <li><a th:text="${product.quantity}" style="font-weight: bold"></a></li>
+                            </ul>
+                            <ul class="product-links">
+                                <li style="font-weight: bold">Loại sản phẩm:</li>
+                                <li><a th:text="${product.category.name}"></a></li>
+                            </ul>
+                            <ul class="product-links">
+                                <li style="font-weight: bold">Thương hiệu:</li>
+                                <li><a th:text="${product.tradeMark.name}"></a></li>
+                            </ul>
+                            <ul class="product-links">
+                                <li>Share:</li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Product details -->
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li class="active"><a data-toggle="tab" href="#tab1">Mô tả</a></li>
+                        <li><a data-toggle="tab" href="#tab3">Đánh giá</a></li>
+                    </ul>
+                    <!-- /product tab nav -->
+
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                        <!-- tab1  -->
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p th:text="${product.description}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab1  -->
+                        <!-- tab3  -->
+                        <div id="tab3" class="tab-pane fade in">
+                            <div class="row">
+                                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                                <section class="content-item" id="comments">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <form>
+                                                    <h3 class="pull-left">New Comment</h3>
+                                                    <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                                    <fieldset>
+                                                        <div class="row">
+                                                            <div class="col-sm-3 col-lg-2 hidden-xs">
+                                                                <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                                            </div>
+                                                            <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                                                <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+
+                                                <h3>4 Comments</h3>
+
+                                                <!-- COMMENT 1 - START -->
+                                                <div class="media">
+                                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">John Doe</h4>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                                        </ul>
+                                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                                            <li class=""><a href="">Like</a></li>
+                                                            <li class=""><a href="">Reply</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- COMMENT 1 - END -->
+
+                                                <!-- COMMENT 2 - START -->
+                                                <div class="media">
+                                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">John Doe</h4>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                                        </ul>
+                                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                                            <li class=""><a href="">Like</a></li>
+                                                            <li class=""><a href="">Reply</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- COMMENT 2 - END -->
+
+                                                <!-- COMMENT 3 - START -->
+                                                <div class="media">
+                                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">John Doe</h4>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                                        </ul>
+                                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                                            <li class=""><a href="">Like</a></li>
+                                                            <li class=""><a href="">Reply</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- COMMENT 3 - END -->
+
+                                                <!-- COMMENT 4 - START -->
+                                                <div class="media">
+                                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""></a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">John Doe</h4>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                                        </ul>
+                                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                                            <li class=""><a href="">Like</a></li>
+                                                            <li class=""><a href="">Reply</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- COMMENT 4 - END -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- /tab3  -->
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+            <!-- /product tab -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- Section -->
+<div class="section" style="margin-bottom: 30px;">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title">Sản Phẩm Tương Tự</h3>
+                </div>
+            </div>
+            <!-- product -->
+            <th:block th:each="product : ${products}">
+            <div class="col-md-3 col-xs-6">
+                <div class="product">
+                    <div class="product-img">
+                        <a th:href="@{/shop/details/__${product.id}__}"><img th:src="@{'/views/img/'+ ${product.image1}}" width="100%" height="220px"></a>
+                        <div class="product-label">
+                            <span class="new">NEW</span>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-category"></p>
+                        <p class="product-category" th:text="${product.tradeMark.name}"></p>
+                        <h3 class="product-name"><a th:href="@{/shop/details/__${product.id}__}" th:text="${product.name}"></a></h3>
+                        <h4 class="product-price" th:text="${product.price}">  VNĐ</h4>
+
+                        <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-btns">
+                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                            <button class="quick-view"><a th:href="@{/shop/details/__${product.id}__}"><i class="fa fa-eye"></i><span class="tooltipp">Xem</span></a></button>
+                        </div>
+                    </div>
+                    <div class="add-to-cart">
+                        <a href=""><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Thêm vào túi</button></a>
+                    </div>
+                </div>
+            </div>
+            </th:block>
+            <!-- /product -->
+            <div class="clearfix visible-sm visible-xs"></div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /Section -->
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Thông Tin</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fa fa-map-marker"></i>Địa chỉ</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>Email</a></li>
+                            <li><a href="#"><i class="fa fa-facebook-square"></i>FaceBook</a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i>Intagram</a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Tổng Đài Bán Hàng</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Đặt hàng gọi miễn phí: 1800 6066(8h - 20h00)</a></li>
+                            <li><a href="#">Đổi hàng, bảo hành, khiếu nại: 1900 6483(8h - 17h30)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix visible-xs"></div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Hỗ Trợ Khách Hàng</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Hướng dẫn mua hàng</a></li>
+                            <li><a href="#">Thanh toán qua ngân hàng</a></li>
+                            <li><a href="#">Chính sách bảo hành</a></li>
+                            <li><a href="#">Chính sách đổi trả</a></li>
+                            <li><a href="#">Chính sách tích điểm</a></li>
+                            <li><a href="#">Bảo mật thông tin</a></li>
+                            <li><a href="#">Chính sách vận chuyển</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">FaceBook Page</h3>
+                        <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                        <div style="width: 100%;">
+                            <div class="fb-page" data-href="" data-tabs="timeline" data-width="600"  data-height="250" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/lacdaustore" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/lacdaustore"></a></blockquote></div>
+                            <div class="fb-page" data-href="https://www.facebook.com/Chivas/" data-tabs="timeline" data-width="600"  data-height="250" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Chivas/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Chivas/"></a></blockquote></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="footer-section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Coppyright <a href="#"><i class="fa fa-facebook"></i></a> 2019-2029 <strong>  Quang Linh</strong></p>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/nouislider.min.js"></script>
+<script src="/js/jquery.zoom.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
