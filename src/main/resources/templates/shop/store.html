@@ -3,6 +3,24 @@
 <head>
     <th:block th:replace="master::views-head"></th:block>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function addCart(e){
+             let proId=e.getAttribute("idPro");
+            $.ajax({
+                type:"GET",
+                //tên API
+                url:"/cartitem/create/"+proId,
+                success: function () {
+                    successHandler();
+                }
+            })
+            //chặn sự kiện mặc định của thẻ
+            event.preventDefault();
+        }
+
+    </script>
+
+
 </head>
 <body>
 <th:block th:replace="master::view-top-cart-menu"></th:block>
@@ -106,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <a href=""><button th:attr="idPro=${product.id}" class="add-to-cart-btn" onclick="addCart(this)"><i class="fa fa-shopping-cart"></i>Thêm vào túi</button></a>
+                                    <button th:attr="idPro=${product.id}" class="add-to-cart-btn" onclick="addCart(this)"><i class="fa fa-shopping-cart"></i>Thêm vào túi</button>
                                 </div>
                             </div>
 <!--                        </div>-->
@@ -145,4 +163,8 @@
 <!-- /SECTION -->
 <th:block th:replace="master::view-footer-js"></th:block>
 </body>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+</script>
 </html>

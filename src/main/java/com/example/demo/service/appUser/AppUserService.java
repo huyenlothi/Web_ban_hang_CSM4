@@ -2,8 +2,12 @@ package com.example.demo.service.appUser;
 
 import com.example.demo.model.AppUser;
 import com.example.demo.repository.AppUserRepository;
+import org.omg.IOP.ServiceContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,6 +26,15 @@ public class AppUserService implements IAppUserService, UserDetailsService {
     @Override
     public AppUser getUserByName(String name) {
         return userRepository.findAppUserByUsername(name);
+    }
+
+    @Override
+    public AppUser getCurrentUser() {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+        AppUser user= getUserByName(userName);
+        return user;
+
     }
 
     @Override
@@ -59,4 +72,5 @@ public class AppUserService implements IAppUserService, UserDetailsService {
         }
         return userDetails;
     }
+
 }
