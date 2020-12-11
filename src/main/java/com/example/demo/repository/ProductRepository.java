@@ -22,4 +22,5 @@ public interface ProductRepository extends PagingAndSortingRepository<Products,L
     Page<Products> findAllByNameContainingAndTradeMarkAndCategory(String name,Category category, TradeMark tradeMark, Pageable pageable);
     @Query(value = "select *from products where timestamp < DATE_ADD(curdate(), INTERVAL 8 DAY);", nativeQuery = true)
     Iterable<Products> findAllBy8Day();
+    Iterable<Products> findAllByTradeMark(TradeMark tradeMark);
 }

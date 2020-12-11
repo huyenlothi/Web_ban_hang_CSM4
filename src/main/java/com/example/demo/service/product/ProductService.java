@@ -65,6 +65,11 @@ public class ProductService implements IProductService{
     }
 
     @Override
+    public Iterable<Products> findAllByTradeMark(TradeMark tradeMark) {
+        return productRepository.findAllByTradeMark(tradeMark);
+    }
+
+    @Override
     public Optional<Products> findById(Long id) {
         return productRepository.findById(id);
     }
