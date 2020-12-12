@@ -70,6 +70,11 @@ public class ProductService implements IProductService{
     }
 
     @Override
+    public Page<Products> findAllByCategoryAndPrice(Long cat_id, Double minPrice, Double maxPrice, Pageable pageable) {
+        return productRepository.findAllByCategoryAndPrice(cat_id,minPrice,maxPrice,pageable);
+    }
+
+    @Override
     public Optional<Products> findById(Long id) {
         return productRepository.findById(id);
     }

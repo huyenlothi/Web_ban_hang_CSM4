@@ -18,4 +18,5 @@ public interface IProductService extends IService<Products> {
     Page<Products> findAllByNameContainingAndTradeMarkAndCategory(String name,Category category, TradeMark tradeMark, Pageable pageable);
     Iterable<Products> findAllBy8Day();
     Iterable<Products>findAllByTradeMark(TradeMark tradeMark);
+    Page<Products> findAllByCategoryAndPrice(Long cat_id, Double minPrice, Double maxPrice, Pageable pageable);
 }

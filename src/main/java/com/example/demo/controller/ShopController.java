@@ -16,14 +16,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/shop")
@@ -83,4 +81,16 @@ public class ShopController {
         Iterable<Products> products = productService.findAllByTradeMark(tradeMark);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
+
+    @GetMapping("/store")
+    public ModelAndView getStore(@RequestParam(value ="tradeMark",required = false,defaultValue = "") String tradeMark,@RequestParam(value ="category",required = false,defaultValue = "") String category,@RequestParam(value ="min-price",required = false,defaultValue = "") String minPrice,@RequestParam(value ="max-price",required = false,defaultValue = "") String maxPrice,  @PageableDefault(size = 15) Pageable pageable){
+        Page<Products> products;
+        products =productService.findAll(pageable);
+
+        ModelAndView modelAndView = new ModelAndView("shop/store");
+        modelAndView.addObject("listproduct",products);
+        return modelAndView;
+    }
+
+
 }
