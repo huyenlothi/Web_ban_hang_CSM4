@@ -70,8 +70,8 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Page<Products> findAllByCategoryAndPrice(Long cat_id, Double minPrice, Double maxPrice, Pageable pageable) {
-        return productRepository.findAllByCategoryAndPrice(cat_id,minPrice,maxPrice,pageable);
+    public Iterable<Products> findAllByPriceBetween(Double min, Double max) {
+        return productRepository.findAllByPriceBetween(min,max);
     }
 
     @Override

@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Products,Long> {
 
@@ -27,12 +29,10 @@ public interface ProductRepository extends PagingAndSortingRepository<Products,L
     Page<Products> findAllByNameContainingAndTradeMarkAndCategory(String name, Category category, TradeMark tradeMark, Pageable pageable);
 
     @Query(value = "select *from products where timestamp < DATE_ADD(curdate(), INTERVAL 8 DAY);", nativeQuery = true)
-
     Iterable<Products> findAllBy8Day();
 
     Iterable<Products> findAllByTradeMark(TradeMark tradeMark);
 
-    @Query(value ="SELECT * FROM products WHERE categorys_id = ?1 AND price BETWEEN ?2 AND ?3 ",nativeQuery = true)
-    Page<Products> findAllByCategoryAndPrice(Long cat_id, Double minPrice, Double maxPrice, Pageable pageable);
+    Iterable<Products> findAllByPriceBetween(Double min, Double max);
 }
 

@@ -382,14 +382,14 @@
 </div>-->
 <!-- /SECTION -->
 <!-- SECTION -->
-<!--<div class="section">
-    &lt;!&ndash; container &ndash;&gt;
+<div class="section">
+    <!-- container -->
     <div class="container">
-        &lt;!&ndash; row &ndash;&gt;
+        <!-- row -->
         <div class="row">
             <div class="col-md-4 col-xs-6">
                 <div class="section-title">
-                    <h4 class="title" th:text="${trade1.name}" ></h4>
+                    <h4 class="title" th:text="${cat3.name}" ></h4>
                     <div class="section-nav">
                         <a href="">Xem thêm</a>
                     </div>
@@ -397,28 +397,28 @@
                 <hr class="widget-hr" >
                 <div class="products-widget-slick" data-nav="#slick-nav-4">
                     <div>
-                        &lt;!&ndash; product widget &ndash;&gt;
-                        <th:block th:each="trademark : ${tradeMark1}">
+                        <!-- product widget -->
+                        <th:block th:each="categories3 : ${categories3}">
                         <div class="product-widget">
                             <div class="product-img">
-                                <a href=""><img th:src="@{'/views/img/'+ ${trademark.image1}}" width="60px" height="60px"></a>
+                                <a href=""><img th:src="@{'/views/img/'+ ${categories3.image1}}" width="60px" height="60px"></a>
                             </div>
                             <div class="product-body">
-                                <p class="product-category" th:text="${trademark.tradeMark.name}"></p>
-                                <h3 class="product-name"><a th:href="@{/shop/details/__${trademark.id}__}" th:text="${trademark.name}"></a></h3>
-                                <h4 class="product-price" th:text="${trademark.price}">  VNĐ</h4>
+                                <p class="product-category" th:text="${categories3.tradeMark.name}"></p>
+                                <h3 class="product-name"><a th:href="@{/shop/details/__${categories3.id}__}" th:text="${categories3.name}"></a></h3>
+                                <h4 class="product-price" th:text="${categories3.price}">  VNĐ</h4>
 
                             </div>
                         </div>
                         </th:block>
-                        &lt;!&ndash; /product widget &ndash;&gt;
+                        <!-- /product widget -->
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4 col-xs-6">
                 <div class="section-title">
-                    <h4 class="title" th:text="${trade2.name}" ></h4>
+                    <h4 class="title" th:text="${cat2.name}" ></h4>
                     <div class="section-nav">
                         <a href="">Xem thêm</a>
                     </div>
@@ -426,21 +426,21 @@
                 <hr class="widget-hr" >
                 <div class="products-widget-slick" data-nav="#slick-nav-4">
                     <div>
-                        &lt;!&ndash; product widget &ndash;&gt;
-                        <th:block th:each="trademark : ${tradeMark2}">
+                        <!-- product widget -->
+                        <th:block th:each="categories2 : ${categories2}">
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <a href=""><img th:src="@{'/views/img/'+ ${trademark.image1}}" width="60px" height="60px"></a>
+                                    <a href=""><img th:src="@{'/views/img/'+ ${categories2.image1}}" width="60px" height="60px"></a>
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category" th:text="${trademark.tradeMark.name}"></p>
-                                    <h3 class="product-name"><a th:href="@{/shop/details/__${trademark.id}__}" th:text="${trademark.name}"></a></h3>
-                                    <h4 class="product-price" th:text="${trademark.price}">  VNĐ</h4>
+                                    <p class="product-category" th:text="${categories2.tradeMark.name}"></p>
+                                    <h3 class="product-name"><a th:href="@{/shop/details/__${categories2.id}__}" th:text="${categories2.name}"></a></h3>
+                                    <h4 class="product-price" th:text="${categories2.price}">  VNĐ</h4>
 
                                 </div>
                             </div>
                         </th:block>
-                        &lt;!&ndash; /product widget &ndash;&gt;
+                        <!-- /product widget -->
                     </div>
                 </div>
             </div>
@@ -449,7 +449,7 @@
 
             <div class="col-md-4 col-xs-6">
                 <div class="section-title">
-                    <h4 class="title" th:text="${trade3.name}" ></h4>
+                    <h4 class="title" th:text="${cat1.name}" ></h4>
                     <div class="section-nav">
                         <a href="">Xem thêm</a>
                     </div>
@@ -457,31 +457,30 @@
                 <hr class="widget-hr" >
                 <div class="products-widget-slick" data-nav="#slick-nav-4">
                     <div>
-                        &lt;!&ndash; product widget &ndash;&gt;
-                        <th:block th:each="trademark : ${tradeMark3}">
+                        <!-- product widget -->
+                        <th:block th:each="categories1 : ${categories1}">
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <a href=""><img th:src="@{'/views/img/'+ ${trademark.image1}}" width="60px" height="60px"></a>
+                                    <a href=""><img th:src="@{'/views/img/'+ ${categories1.image1}}" width="60px" height="60px"></a>
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category" th:text="${trademark.tradeMark.name}"></p>
-                                    <h3 class="product-name"><a th:href="@{/shop/details/__${trademark.id}__}" th:text="${trademark.name}"></a></h3>
-                                    <h4 class="product-price" th:text="${trademark.price}">  VNĐ</h4>
+                                    <p class="product-category" th:text="${categories1.tradeMark.name}"></p>
+                                    <h3 class="product-name"><a th:href="@{/shop/details/__${categories1.id}__}" th:text="${categories1.name}"></a></h3>
+                                    <h4 class="product-price" th:text="${categories1.price}">  VNĐ</h4>
 
                                 </div>
                             </div>
                         </th:block>
-                        &lt;!&ndash; /product widget &ndash;&gt;
+                        <!-- /product widget -->
                     </div>
                 </div>
             </div>
 
         </div>
-        &lt;!&ndash; /row &ndash;&gt;
+        <!-- /row -->
     </div>
-    &lt;!&ndash; /container &ndash;&gt;
-</div>-->
-<!-- /SECTION -->
+    <!-- /container -->
+</div>
 <div id="newsletter" class="section">
     <!-- container -->
     <div class="container">

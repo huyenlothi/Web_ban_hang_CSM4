@@ -26,7 +26,7 @@ public class AppUserController {
         modelAndView.addObject("user",new AppUser());
         return modelAndView;
     }
-    @PostMapping("/create")
+   /* @PostMapping("/create")
     public ModelAndView createAppUser(@ModelAttribute AppUser user){
         ModelAndView modelAndView= new ModelAndView("user/create");
         AppRole appRole= new AppRole();
@@ -39,7 +39,7 @@ public class AppUserController {
         appUserService.save(user);
         modelAndView.addObject("user", new AppUser());
         return modelAndView;
-    }
+    }*/
    }
 
 
