@@ -41,5 +41,9 @@ public class ShopeeController {
          modelAndView.addObject("product",products);
          return modelAndView;
      }
+    @GetMapping("/checkout")
+    public String checkout(){
+        return "shop/checkout";
+    }
 }
 
