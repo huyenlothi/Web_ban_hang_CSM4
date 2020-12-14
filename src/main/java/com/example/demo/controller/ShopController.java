@@ -1,10 +1,15 @@
 package com.example.demo.controller;
 
 import com.example.demo.exeption.NotFoundException;
+import com.example.demo.model.*;
+import com.example.demo.service.appUser.IAppUserService;
+import com.example.demo.service.cart.ICartService;
 import com.example.demo.model.Category;
+import com.example.demo.model.Comment;
 import com.example.demo.model.Products;
 import com.example.demo.model.TradeMark;
 import com.example.demo.service.category.ICategoryService;
+import com.example.demo.service.comment.ICommentService;
 import com.example.demo.service.product.IProductService;
 import com.example.demo.service.trademark.ITrademarkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +32,10 @@ import java.util.Optional;
 @RequestMapping("/shop")
 public class ShopController {
     @Autowired
+    private IAppUserService appUserService;
+    @Autowired
+    private ICartService cartService;
+    @Autowired
     IProductService productService;
 
     @Autowired
@@ -34,6 +43,9 @@ public class ShopController {
 
     @Autowired
     ITrademarkService trademarkService;
+
+    @Autowired
+    ICommentService commentService;
 
     @ModelAttribute("category")
     public Iterable<Category> categories(@PageableDefault(size = 3) Pageable pageable) {
@@ -80,8 +92,12 @@ public class ShopController {
         ModelAndView modelAndView = new ModelAndView("shop/details");
         Products product = productService.findById(id).get();
         Category category = product.getCategory();
+        Iterable<Comment> comments = commentService.findAllByProduct(product);
         Iterable<Products> products = productService.findAllByCategory(category,pageable);
+        Integer cmtSum = commentService.countAllByProduct(product);
         modelAndView.addObject("product",product);
+        modelAndView.addObject("cmtSum",cmtSum);
+        modelAndView.addObject("comments",comments);
         modelAndView.addObject("products",products);
         return modelAndView;
     }
@@ -134,5 +150,23 @@ public class ShopController {
         Double minPrice = Double.parseDouble(min);
         Iterable<Products> allProductByPrice = productService.findAllByPriceBetween(minPrice,maxPrice);
         return new ResponseEntity<>(allProductByPrice,HttpStatus.OK);
+    }
+
+    @GetMapping("/register")
+    public ModelAndView createUser(){
+        ModelAndView modelAndView= new ModelAndView("user/create");
+        modelAndView.addObject("user",new AppUser());
+        return modelAndView;
+    }
+   @PostMapping("/register")
+    public ModelAndView createAppUser(@ModelAttribute AppUser user){
+        ModelAndView modelAndView= new ModelAndView("user/create");
+        AppRole appRole= new AppRole();
+        appRole.setId((long) 2);
+        appRole.setName("ROLE_USER");
+        user.setRole(appRole);
+        appUserService.save(user);
+        modelAndView.addObject("user", new AppUser());
+        return modelAndView;
     }
 }

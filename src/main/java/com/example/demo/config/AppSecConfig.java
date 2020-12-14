@@ -16,7 +16,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class AppSecConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private IAppUserService appUserService;
-
+    @Autowired
+    private CustomSuccessHandler customSuccessHandler;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService((UserDetailsService) appUserService).passwordEncoder(NoOpPasswordEncoder.getInstance());
