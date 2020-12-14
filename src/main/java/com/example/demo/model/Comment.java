@@ -7,16 +7,23 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table()
+@Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cart {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name="app_user_id")
-    private AppUser appUser;
+    private String comment;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private  AppUser user;
+
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Products product;
+
 }

@@ -13,11 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/cartitem")
 public class CartItemController {
    @Autowired
    private ICartItemService cartItemService;
@@ -29,10 +29,11 @@ public class CartItemController {
    public AppUser currentUser(){
        return appUserService.getCurrentUser();
    }
-    @GetMapping("/create/{id}")
+    /*@GetMapping("/cartitem/create/{id}")
     public ResponseEntity<CartItem> addCart(@PathVariable Long id) throws NotFoundException {
         Products products= productService.findById(id).get();
-        Cart cart = currentUser().getCart();
+        AppUser user = currentUser();
+        Cart cart = user.getCart();
         CartItem cartItem= new CartItem();
         cartItem.setProducts(products);
         cartItem.setCart(cart);
@@ -40,6 +41,14 @@ public class CartItemController {
         cartItemService.save(cartItem);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/checklogin")
+    public ResponseEntity<AppUser> checkLogin() throws NotFoundException {
+        AppUser user = currentUser();
+        return new ResponseEntity<>(user,HttpStatus.OK);
+    }*/
+
+
 
 
 

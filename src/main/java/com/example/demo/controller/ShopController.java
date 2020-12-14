@@ -16,14 +16,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/shop")
@@ -41,6 +39,10 @@ public class ShopController {
     public Iterable<Category> categories(@PageableDefault(size = 3) Pageable pageable) {
         return categoryService.findAll(pageable);
     }
+    @ModelAttribute("categorys")
+    public Iterable<Category> categories() {
+        return categoryService.findAll();
+    }
 
     @ModelAttribute("trademark")
     public Iterable<TradeMark> tradeMarks( ) {
@@ -52,9 +54,22 @@ public class ShopController {
         ModelAndView modelAndView = new ModelAndView("shop/index");
         Page<TradeMark> tradeMarks = trademarkService.findAll(pageable);
         TradeMark tradeMark1 = trademarkService.findById(1L).get();
+        List<Category> categories = categoryService.findNewCategory();
+        Category cat1 = categoryService.findById(categories.get(0).getId()).get();
+        Category cat2 = categoryService.findById(categories.get(1).getId()).get();
+        Category cat3 = categoryService.findById(categories.get(2).getId()).get();
+        Page<Products> categories1 = productService.findAllByCategory(cat1,pageable);
+        Page<Products> categories2 = productService.findAllByCategory(cat2,pageable);
+        Page<Products> categories3 = productService.findAllByCategory(cat3,pageable);
         Iterable<Products> tradeProduct = productService.findAllByTradeMark(tradeMark1);
         Iterable<Products> newProduct = productService.findAllBy8Day();
         modelAndView.addObject("newProduct",newProduct);
+        modelAndView.addObject("cat1",cat1);
+        modelAndView.addObject("cat2",cat2);
+        modelAndView.addObject("cat3",cat3);
+        modelAndView.addObject("categories1",categories1);
+        modelAndView.addObject("categories2",categories2);
+        modelAndView.addObject("categories3",categories3);
         modelAndView.addObject("tradeMarks",tradeMarks);
         modelAndView.addObject("tradeProduct",tradeProduct);
         return modelAndView;
@@ -82,5 +97,42 @@ public class ShopController {
         TradeMark tradeMark = trademarkService.findById(id).get();
         Iterable<Products> products = productService.findAllByTradeMark(tradeMark);
         return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/store")
+    public ModelAndView getStore(@RequestParam(value ="tradeMark",required = false,defaultValue = "") String tradeMark,@RequestParam(value ="category",required = false,defaultValue = "") String category,@PageableDefault(size = 15) Pageable pageable) throws NotFoundException {
+        Page<Products> products;
+        Long cat_id = null;
+        Long trade_id = null;
+        Category category1 = new Category();
+        TradeMark tradeMark1 = new TradeMark();
+        if (!category.equals("")) {
+            cat_id = Long.parseLong(category);
+            category1 = categoryService.findById(cat_id).get();
+        }
+        if(!tradeMark.equals("")) {
+            trade_id = Long.parseLong(tradeMark);
+            tradeMark1 = trademarkService.findById(trade_id).get();
+        }
+        if(!category.equals("") && tradeMark.equals("")){
+            products = productService.findAllByCategory(category1, pageable);
+        }else if (category.equals("") && !tradeMark.equals("")){
+            products = productService.findAllByTradeMark(tradeMark1,pageable);
+        }else if (!category.equals("") && !tradeMark.equals("")){
+            products = productService.findAllByCategoryAndTradeMark(category1,tradeMark1,pageable);
+        }else {
+            products =productService.findAll(pageable);
+        }
+        ModelAndView modelAndView = new ModelAndView("shop/store");
+        modelAndView.addObject("listproduct",products);
+        return modelAndView;
+    }
+
+    @GetMapping("/price")
+    public ResponseEntity<Iterable<Products>> getAllProByPrice(@RequestParam(value = "min-price",required = false,defaultValue = "") String min,@RequestParam(value = "max-price",required = false,defaultValue = "") String max){
+        Double maxPrice = Double.parseDouble(max);
+        Double minPrice = Double.parseDouble(min);
+        Iterable<Products> allProductByPrice = productService.findAllByPriceBetween(minPrice,maxPrice);
+        return new ResponseEntity<>(allProductByPrice,HttpStatus.OK);
     }
 }

@@ -70,6 +70,11 @@ public class ProductService implements IProductService{
     }
 
     @Override
+    public Iterable<Products> findAllByPriceBetween(Double min, Double max) {
+        return productRepository.findAllByPriceBetween(min,max);
+    }
+
+    @Override
     public Optional<Products> findById(Long id) {
         return productRepository.findById(id);
     }

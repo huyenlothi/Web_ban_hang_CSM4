@@ -26,7 +26,7 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
 //                .and().authorizeRequests().antMatchers("/product/list").permitAll()
-                .and().authorizeRequests().antMatchers("/product/**").hasRole("USER")
+                /*.and().authorizeRequests().antMatchers("/**").hasRole("USER")*/
                 .and().formLogin()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().exceptionHandling().accessDeniedPage("/accessDenied");
