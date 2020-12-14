@@ -41,7 +41,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         } else if(isUser(roles)){
             url="/shop";
         } else {
-            url = "/shop/store";
+            url = "/shop";
         }
         return url;
     }

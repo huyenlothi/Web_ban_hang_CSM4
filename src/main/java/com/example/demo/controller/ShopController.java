@@ -13,8 +13,6 @@ import com.example.demo.service.comment.ICommentService;
 import com.example.demo.service.product.IProductService;
 import com.example.demo.service.trademark.ITrademarkService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -31,14 +29,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/shop")
 public class ShopController {
-    @Autowired
-    private IAppUserService appUserService;
-    @Autowired
-    private ICartService cartService;
-    @Autowired
-    private IAppUserService appUserService;
-    @Autowired
-    private ICartService cartService;
     @Autowired
     IProductService productService;
 
@@ -168,8 +158,6 @@ public class ShopController {
         AppRole appRole= new AppRole();
         appRole.setId((long) 2);
         appRole.setName("ROLE_USER");
-        user.setRole(appRole);
-        appUserService.save(user);
         modelAndView.addObject("user", new AppUser());
         return modelAndView;
     }

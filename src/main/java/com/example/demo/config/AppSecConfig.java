@@ -26,8 +26,7 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
-                .and().authorizeRequests().antMatchers("/shop/store").permitAll()
-                .and().authorizeRequests().antMatchers("/shop/**").hasRole("USER")
+                .and().authorizeRequests().antMatchers("/shop/**").permitAll()
                 .and()
                 .formLogin().successHandler(customSuccessHandler)
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
