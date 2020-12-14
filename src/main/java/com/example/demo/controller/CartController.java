@@ -33,11 +33,11 @@ public class CartController {
         return appUserService.getCurrentUser();
     }
 
-    /*@PostMapping("create/cart/{id}")
+    @PostMapping("create/cart/{id}")
     public ResponseEntity<CartItem> postCart(@PathVariable Long id) {
         AppUser user = currentUser();
         CartItem cartItem = new CartItem();
         return new ResponseEntity<>(HttpStatus.OK);
-    }*/
+    }
 
 }
