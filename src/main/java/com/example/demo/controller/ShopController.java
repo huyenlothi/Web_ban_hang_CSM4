@@ -36,6 +36,10 @@ public class ShopController {
     @Autowired
     private ICartService cartService;
     @Autowired
+    private IAppUserService appUserService;
+    @Autowired
+    private ICartService cartService;
+    @Autowired
     IProductService productService;
 
     @Autowired

@@ -39,7 +39,6 @@ public class CartItemController {
         cartItem.setCart(cart);
         cartItem.setQuantity(1);
         cartItemService.save(cartItem);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -48,6 +47,7 @@ public class CartItemController {
         AppUser user = currentUser();
         return new ResponseEntity<>(user,HttpStatus.OK);
     }*/
+
 
 
 
