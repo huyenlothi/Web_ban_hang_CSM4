@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.exeption.NotFoundException;
-import com.example.demo.model.Category;
-import com.example.demo.model.Products;
-import com.example.demo.model.TradeMark;
+import com.example.demo.model.*;
+import com.example.demo.service.appUser.IAppUserService;
+import com.example.demo.service.cart.ICartService;
 import com.example.demo.service.category.ICategoryService;
 import com.example.demo.service.product.IProductService;
 import com.example.demo.service.trademark.ITrademarkService;
@@ -26,6 +26,10 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/shop")
 public class ShopController {
+    @Autowired
+    private IAppUserService appUserService;
+    @Autowired
+    private ICartService cartService;
     @Autowired
     IProductService productService;
 
@@ -134,5 +138,23 @@ public class ShopController {
         Double minPrice = Double.parseDouble(min);
         Iterable<Products> allProductByPrice = productService.findAllByPriceBetween(minPrice,maxPrice);
         return new ResponseEntity<>(allProductByPrice,HttpStatus.OK);
+    }
+
+    @GetMapping("/register")
+    public ModelAndView createUser(){
+        ModelAndView modelAndView= new ModelAndView("user/create");
+        modelAndView.addObject("user",new AppUser());
+        return modelAndView;
+    }
+   @PostMapping("/register")
+    public ModelAndView createAppUser(@ModelAttribute AppUser user){
+        ModelAndView modelAndView= new ModelAndView("user/create");
+        AppRole appRole= new AppRole();
+        appRole.setId((long) 2);
+        appRole.setName("ROLE_USER");
+        user.setRole(appRole);
+        appUserService.save(user);
+        modelAndView.addObject("user", new AppUser());
+        return modelAndView;
     }
 }

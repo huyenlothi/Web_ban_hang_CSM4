@@ -37,11 +37,11 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             roles.add(authority.getAuthority());
         }
         if(isAdmin(roles)){
-            url="/admin";
+            url="/admin/product";
         } else if(isUser(roles)){
             url="/shop";
         } else {
-            url = "/shop/list";
+            url = "/shop/store";
         }
         return url;
     }
@@ -53,7 +53,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private boolean isAdmin(List<String> roles){
         return roles.contains("ROLE_ADMIN");
     }
-
 
     @Override
     public RedirectStrategy getRedirectStrategy() {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
-public class BillService implements IBillService{
+public class BillService implements IBillService {
     @Autowired
     private BillRepository billRepository;
     @Override
@@ -17,7 +17,7 @@ public class BillService implements IBillService{
     }
 
     @Override
-    public Bill findById(Long id) throws NotFoundException {
+    public Optional<Bill> findById(Long id) throws NotFoundException {
         return billRepository.findById(id);
     }
 

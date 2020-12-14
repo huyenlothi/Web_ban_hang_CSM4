@@ -16,7 +16,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class AppSecConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private IAppUserService appUserService;
-
+    @Autowired
+    private CustomSuccessHandler customSuccessHandler;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService((UserDetailsService) appUserService).passwordEncoder(NoOpPasswordEncoder.getInstance());
@@ -25,9 +26,10 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
-//                .and().authorizeRequests().antMatchers("/product/list").permitAll()
-                /*.and().authorizeRequests().antMatchers("/**").hasRole("USER")*/
-                .and().formLogin()
+                .and().authorizeRequests().antMatchers("/shop/store").permitAll()
+                .and().authorizeRequests().antMatchers("/shop/**").hasRole("USER")
+                .and()
+                .formLogin().successHandler(customSuccessHandler)
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().exceptionHandling().accessDeniedPage("/accessDenied");
         http.csrf().disable();

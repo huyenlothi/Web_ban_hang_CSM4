@@ -62,4 +62,8 @@ public class AppUser {
         this.address = address;
         this.role = role;
     }
+    public AppUser(@Min(6) String name,@Min(6) String password){
+        this.username = name;
+        this.password = password;
+    }
 }
