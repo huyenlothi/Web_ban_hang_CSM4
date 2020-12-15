@@ -23,6 +23,8 @@ public class Bill {
 
     private Date dateOder;
 
+    private Integer status;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private AppUser appUser;

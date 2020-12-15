@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/trademark")
+@RequestMapping("/admin/trademark")
 public class TrademarkController {
 
     @Autowired

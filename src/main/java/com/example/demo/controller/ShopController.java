@@ -2,12 +2,14 @@ package com.example.demo.controller;
 
 import com.example.demo.exeption.NotFoundException;
 import com.example.demo.model.*;
+import com.example.demo.service.IService;
 import com.example.demo.service.appUser.IAppUserService;
 import com.example.demo.service.cart.ICartService;
 import com.example.demo.model.Category;
 import com.example.demo.model.Comment;
 import com.example.demo.model.Products;
 import com.example.demo.model.TradeMark;
+import com.example.demo.service.cartItem.ICartItemService;
 import com.example.demo.service.category.ICategoryService;
 import com.example.demo.service.comment.ICommentService;
 import com.example.demo.service.product.IProductService;
@@ -40,6 +42,58 @@ public class ShopController {
 
     @Autowired
     ICommentService commentService;
+
+    @Autowired
+    IAppUserService appUserService;
+
+    @Autowired
+    private ICartItemService cartItemService;
+
+    @Autowired
+    private ICartService cartService;
+
+    @ModelAttribute("quantity")
+    public List<Integer> quantity(){
+        List<CartItem> cartItems = cartItemService.findBycarts(currentCart());
+        List<Integer> list = new ArrayList();
+        for (CartItem cartItem : cartItems){
+            list.add(cartItem.getQuantity());
+        }
+        return list;
+    }
+    @ModelAttribute("count")
+    public Integer coutPr() {
+        List<CartItem> cartItems = cartItemService.findBycarts(currentCart());
+        Integer count = cartItems.size();
+        return count;
+    }
+    @ModelAttribute("total")
+    public Double total() {
+        Double total  = 0.0;
+        List<CartItem> cartItems = cartItemService.findBycarts(currentCart());
+        for (CartItem cartItem : cartItems){
+            total += cartItem.getQuantity() * cartItem.getProducts().getPrice();
+        }
+        return total;
+    }
+
+    @ModelAttribute("user")
+    public AppUser currentUser(){
+        return appUserService.getCurrentUser();
+    }
+
+    @ModelAttribute("currentCart")
+    public Cart currentCart() {
+        Cart cart = cartService.findByAppUser(currentUser());
+        return cart;
+    }
+
+    @ModelAttribute("cartItem")
+    public Iterable<Products> cartItem(){
+        Iterable<Products> products= productService.findAllByCart(currentCart());
+        return products;
+    }
+
 
     @ModelAttribute("category")
     public Iterable<Category> categories(@PageableDefault(size = 3) Pageable pageable) {
@@ -159,6 +213,12 @@ public class ShopController {
         appRole.setId((long) 2);
         appRole.setName("ROLE_USER");
         modelAndView.addObject("user", new AppUser());
+        return modelAndView;
+    }
+
+    @GetMapping("/checkout")
+    public ModelAndView checkout() {
+        ModelAndView modelAndView = new ModelAndView("/shop/checkout");
         return modelAndView;
     }
 }

@@ -4,138 +4,7 @@
     <th:block th:replace="master::views-head"></th:block>
 </head>
 
-<!-- TOP HEADER -->
-<div id="top-header">
-    <div class="container">
-        <ul class="header-links pull-left">
-            <li><a href="#"><i class="fa fa-phone"></i>........</a></li>
-            <li><a href="#"><i class="fa fa-envelope-o"></i>............</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i>.................</a></li>
-        </ul>
-    </div>
-</div>
-<!-- /TOP HEADER -->
-
-<!-- MAIN HEADER -->
-<div id="header">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <!-- LOGO -->
-            <div class="col-md-3">
-                <div class="header-logo">
-                    <a href="#" class="logo">
-                        <img src="img/Va-Va-Voom.gif" alt="" width="130px" height="115px" style="float: left">
-                    </a>
-                </div>
-            </div>
-            <!-- /LOGO -->
-
-            <!-- SEARCH BAR -->
-            <div class="col-md-6">
-                <div class="header-search" style="margin-top: 15px">
-                    <form action="/search" method="GET">
-                        <input class="input" type="text" name="key" placeholder="Tìm kiếm tại đây">
-                        <button class="search-btn" type="submit">Tìm Kiếm</button>
-                    </form>
-                </div>
-            </div>
-            <!-- /SEARCH BAR -->
-
-            <!-- ACCOUNT -->
-            <div class="col-md-3 clearfix" style="margin-left: -80px;">
-                <div class="header-ctn">
-                    <!-- Cart -->
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <i class="fa fa-shopping-bag"></i>
-                            <p style="margin-bottom: -5px">Túi của bạn</p>
-
-                        </a>
-                        <div class="cart-dropdown">
-
-                            <div class="cart-list">
-                                <div class="product-widget">
-                                    <div class="product-img">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#"></a></h3>
-                                        <h4 class="product-price"><span class="qty"></span>
-
-                                    </div>
-                                    <a href=""><button class="delete"><i class="fa fa-close"></i></button></a>
-                                </div>
-                            </div>
-
-                            <div class="cart-summary">
-                                <small>Tổng tiền</small>
-                                <h4 style="color: red"> VNĐ</h4>
-                            </div>
-                            <div class="cart-btns">
-                                <a href="/store">Xem thêm</a>
-                                <a href="/dat-hang">Đặt Hàng  <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- /Cart -->
-
-                    <!-- Menu Toogle -->
-                    <div class="menu-toggle">
-                        <a href="#">
-                            <i class="fa fa-bars"></i>
-                            <span>Menu</span>
-                        </a>
-                    </div>
-                    <!-- /Menu Toogle -->
-                </div>
-            </div>
-            <!-- /ACCOUNT -->
-        </div>
-        <!-- row -->
-    </div>
-    <!-- container -->
-</div>
-<!-- /MAIN HEADER -->
-</header>
-
-<nav id="navigation">
-    <!-- container -->
-    <div class="container">
-        <!-- responsive-nav -->
-        <div id="responsive-nav">
-            <!-- NAV -->
-            <ul class="main-nav nav navbar-nav ">
-                <li class="active"><a href="/index">Trang chủ</a></li>
-                <li><a href="/store">Sản phẩm</a></li>
-                <li class="dropdown"><a href="">Thương Hiệu</a>
-                    <ul  class="dropdown-content main-nav nav navbar-nav" style="border-top:2px solid #E4E7ED; border-bottom: 5px solid #D10024">
-
-                        <li><a href=""></a></li>
-                    </ul>
-                </li>
-                <li><a href="/phan-hoi">Phản hồi - Góp ý</a></li>
-            </ul>
-            <!-- /NAV -->
-        </div>
-        <!-- /responsive-nav -->
-    </div>
-    <!-- /container -->
-</nav>
-<!-- /NAVIGATION -->
-<!-- 		<div class="dropdown">
-  <button class="dropbtn">Dropdown</button>
-  <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-</div> -->
-<!-- /HEADER -->
-<!-- BREADCRUMB -->
-<!-- BREADCRUMB -->
+<th:block th:replace="master::view-top-cart-menu"></th:block>
 <div id="breadcrumb" class="section">
     <!-- container -->
     <div class="container">
@@ -168,22 +37,21 @@
                     <div class="section-title">
                         <h3 class="title">Thông Tin Khách Hàng</h3>
                     </div>
-                    <form action="/dat-hang" method="post" class="beta-form-checkout">
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <form action="/dat-hang" method="GET" class="beta-form-checkout">
                         <div class="form-group">
-                            <input class="input" type="text" name="name" placeholder="Tên đầy đủ" style="width: 500px">
+                            <input class="input" type="text"  placeholder="Tên đầy đủ" style="width: 500px">
                         </div>
                         <div class="form-group">
-                            <input class="input" type="email" name="email" placeholder="Email" style="width: 500px">
+                            <input class="input" type="email"  placeholder="Email" style="width: 500px">
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="address" placeholder="Địa chỉ" style="width: 500px">
+                            <input class="input" type="text"  placeholder="Địa chỉ" style="width: 500px">
                         </div>
                         <div class="form-group">
-                            <input class="input" type="number" name="phone" placeholder="Số điện thoại" style="width: 500px">
+                            <input class="input" type="number" placeholder="Số điện thoại" style="width: 500px">
                         </div>
                         <div class="order-notes">
-                            <textarea name="note" style="height: 150px; width: 500px">Ghi Chú</textarea>
+                            <textarea name="note"  style="height: 150px; width: 500px"></textarea>
                         </div>
                 </div>
                 <!-- /Billing Details -->
@@ -229,7 +97,7 @@
                         </div>
                     </div>
                     <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-2" name="payment_method" value="COD">
+                        <input type="radio" id="payment-2"  value="COD">
                         <label for="payment-2">
                             <span></span>
                             Thanh toán khi nhận hàng
@@ -238,7 +106,6 @@
                 </div>
                 <button class="primary-btn order-submit">ĐẶT HÀNG</button>
                 </form>
-            </div>
             <!-- /Order Details -->
         </div>
         <!-- /row -->
@@ -247,7 +114,7 @@
 </div>
 <!-- /SECTION -->
 <!-- FOOTER -->
-<th:block th:replace="master::view-footer-js"></th:block>
+<<th:block th:replace="master::view-footer-js"></th:block>
 </body>
 
 </body>

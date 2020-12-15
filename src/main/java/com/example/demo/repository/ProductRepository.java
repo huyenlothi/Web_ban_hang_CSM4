@@ -34,5 +34,6 @@ public interface ProductRepository extends PagingAndSortingRepository<Products,L
     Iterable<Products> findAllByTradeMark(TradeMark tradeMark);
 
     Iterable<Products> findAllByPriceBetween(Double min, Double max);
+
 }
 

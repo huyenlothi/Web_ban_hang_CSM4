@@ -32,7 +32,7 @@ public class AppUserService implements IAppUserService, UserDetailsService {
     public AppUser getCurrentUser() {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
-        AppUser user= getUserByName(userName);
+        AppUser user= userRepository.findAppUserByUsername(userName);
         return user;
 
     }

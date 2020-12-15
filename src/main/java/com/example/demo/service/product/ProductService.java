@@ -1,19 +1,22 @@
 package com.example.demo.service.product;
 
-import com.example.demo.model.Category;
-import com.example.demo.model.Products;
-import com.example.demo.model.TradeMark;
+import com.example.demo.model.*;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.service.cartItem.ICartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 @Service
 public class ProductService implements IProductService{
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ICartItemService cartItemService;
     @Override
     public Page<Products> findAllByNameContaining(String name, Pageable pageable) {
         return productRepository.findAllByNameContaining(name,pageable);
@@ -72,6 +75,17 @@ public class ProductService implements IProductService{
     @Override
     public Iterable<Products> findAllByPriceBetween(Double min, Double max) {
         return productRepository.findAllByPriceBetween(min,max);
+    }
+
+    @Override
+    public List<Products> findAllByCart(Cart cart) {
+        Iterable<CartItem> cartItems = cartItemService.findAllByCart(cart);
+        List<Products> productList = new ArrayList<>();
+        for (CartItem item:cartItems
+        ) {
+            productList.add(item.getProducts());
+        }
+        return productList;
     }
 
     @Override

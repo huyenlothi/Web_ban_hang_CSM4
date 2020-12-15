@@ -170,7 +170,7 @@
                                     <div class="product-body">
                                         <p class="product-category" th:text="${product.tradeMark.name}"></p>
                                         <h3 class="product-name"><a th:href="@{/shop/details/__${product.id}__}" th:text="${product.name}"></a></h3>
-                                        <h4 class="product-price" th:text="${product.price}">  VNĐ</h4>
+                                        <h4 class="product-price" th:text="${product.price} + ' $'"> $</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -184,7 +184,8 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href=""><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Thêm vào túi</button></a>
+                                        <a th:if="${user}"><button class="add-to-cart-btn" th:href="${product.id}" onclick="saveCart(this)" >Thêm vào túi</button></a>
+                                        <a th:if="${user} == null" href="/login"><button class="add-to-cart-btn" >Thêm vào túi</button></a>
                                     </div>
                                 </div>
                                 </th:block>
@@ -278,7 +279,7 @@
                                         <div class="product-body">
                                             <p class="product-category" th:text="${product.tradeMark.name}"></p>
                                             <h3 class="product-name"><a th:href="@{/shop/details/__${product.id}__}" th:text="${product.name}"></a></h3>
-                                            <h4 class="product-price" th:text="${product.price}">  VNĐ</h4>
+                                            <h4 class="product-price" th:text="${product.price} + ' $'">  $</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -406,7 +407,7 @@
                             <div class="product-body">
                                 <p class="product-category" th:text="${categories3.tradeMark.name}"></p>
                                 <h3 class="product-name"><a th:href="@{/shop/details/__${categories3.id}__}" th:text="${categories3.name}"></a></h3>
-                                <h4 class="product-price" th:text="${categories3.price}">  VNĐ</h4>
+                                <h4 class="product-price" th:text="${categories3.price} + ' $'">  $</h4>
 
                             </div>
                         </div>
@@ -435,7 +436,7 @@
                                 <div class="product-body">
                                     <p class="product-category" th:text="${categories2.tradeMark.name}"></p>
                                     <h3 class="product-name"><a th:href="@{/shop/details/__${categories2.id}__}" th:text="${categories2.name}"></a></h3>
-                                    <h4 class="product-price" th:text="${categories2.price}">  VNĐ</h4>
+                                    <h4 class="product-price" th:text="${categories2.price} + ' $'">  &</h4>
 
                                 </div>
                             </div>
@@ -466,7 +467,7 @@
                                 <div class="product-body">
                                     <p class="product-category" th:text="${categories1.tradeMark.name}"></p>
                                     <h3 class="product-name"><a th:href="@{/shop/details/__${categories1.id}__}" th:text="${categories1.name}"></a></h3>
-                                    <h4 class="product-price" th:text="${categories1.price}">  VNĐ</h4>
+                                    <h4 class="product-price" th:text="${categories1.price} + ' $'">  </h4>
 
                                 </div>
                             </div>

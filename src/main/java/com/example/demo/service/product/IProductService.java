@@ -1,11 +1,14 @@
 package com.example.demo.service.product;
 
+import com.example.demo.model.Cart;
 import com.example.demo.model.Category;
 import com.example.demo.model.Products;
 import com.example.demo.model.TradeMark;
 import com.example.demo.service.IService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface IProductService extends IService<Products> {
     Page<Products> findAllByNameContaining(String name, Pageable pageable);
@@ -19,4 +22,5 @@ public interface IProductService extends IService<Products> {
     Iterable<Products> findAllBy8Day();
     Iterable<Products>findAllByTradeMark(TradeMark tradeMark);
     Iterable<Products> findAllByPriceBetween(Double min, Double max);
+    List<Products> findAllByCart(Cart cart);
 }

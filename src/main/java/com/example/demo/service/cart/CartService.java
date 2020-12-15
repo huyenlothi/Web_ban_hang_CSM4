@@ -1,6 +1,7 @@
 package com.example.demo.service.cart;
 
 import com.example.demo.exeption.NotFoundException;
+import com.example.demo.model.AppUser;
 import com.example.demo.model.Cart;
 import com.example.demo.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,10 @@ public class CartService implements ICartService{
     @Override
     public Cart save(Cart cart) {
         return cartRepository.save(cart);
+    }
+
+    @Override
+    public Cart findByAppUser(AppUser appUser) {
+        return cartRepository.findByAppUser(appUser);
     }
 }
